@@ -33,34 +33,15 @@ inference_group = src_group.new_group('Inference', 'Inference')
 resources_group = src_group.new_group('Resources', 'Resources')
 
 # Swift source files
-swift_files = [
-  'AppDelegate.swift',
-  'SceneDelegate.swift',
-  'ViewController.swift',
-  'CameraManager.swift',
-  'OverlayView.swift',
-]
-
-swift_files.each do |f|
+%w[AppDelegate.swift SceneDelegate.swift ViewController.swift OverlayView.swift].each do |f|
   ref = src_group.new_file(f)
   target.add_file_references([ref])
 end
 
-# ObjC++ files
-objcpp_files = {
-  'MNNFaceDetector.h' => false,
-  'MNNFaceDetector.mm' => true,
-  'FaceDetect-Bridging-Header.h' => false,
-}
-
-objcpp_files.each do |f, compile|
-  ref = inference_group.new_file(f)
-  target.add_file_references([ref]) if compile
-end
-# Add header files to the project (but don't compile)
-inference_group.files.each do |f|
-  # headers are already added via new_file
-end
+# ObjC++ inference bridge
+inference_group.new_file('MNNFaceDetector.h')
+inference_group.new_file('FaceDetect-Bridging-Header.h')
+target.add_file_references([inference_group.new_file('MNNFaceDetector.mm')])
 
 # Resources
 resource_files = ['Info.plist', 'LaunchScreen.storyboard', 'slim-320.mnn']

@@ -1,6 +1,5 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import <CoreVideo/CoreVideo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,9 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MNNFaceDetector : NSObject
 @property (nonatomic, readonly) BOOL isLoaded;
-- (instancetype)init;
 - (NSArray<MNNFaceResult *> *)detectWithImage:(UIImage *)image;
-- (NSArray<MNNFaceResult *> *)detectWithPixelBuffer:(CVPixelBufferRef)pixelBuffer;
 @end
 
 NS_ASSUME_NONNULL_END
