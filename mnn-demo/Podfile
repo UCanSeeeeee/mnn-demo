@@ -1,0 +1,6 @@
+platform :ios, '15.0'
+
+target 'FaceDetect' do
+  use_frameworks!
+  pod 'MNN'
+end

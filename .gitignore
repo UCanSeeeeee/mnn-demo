@@ -1,1 +1,4 @@
 .DS_Store
+mnn-demo/Pods/
+mnn-demo/FaceDetect.xcworkspace/
+mnn-demo/FaceDetect.xcodeproj/
